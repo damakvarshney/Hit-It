@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Hit It</string>
+    <string name="test_yourself">|| Test Yourself ||</string>
+    <string name="todo">TODO</string>
+    <string name="time_left">Time Left : %1$d"sec"</string>
+    <string name="your_score">Your Score : %1$d</string>
+    <string name="hit_it_on">Hit It On</string>
+    <string name="your_score_ahead">Your Score ></string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="select_photo">Select Photo</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="good_luck">|| Good Luck ||</string>
+    <string name="you_can_do_it">|| You Can Do It ||</string>
+    <string name="score_display">%1$d</string>
+    <string name="your_scores">Your Score</string>
+    <string name="play_nagain">Play\nAgain</string>
+    <string name="ranking">Ranking</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="log_out">Log Out</string>
+    <string name="about">About</string>
+    <string name="dialogTitle">About Application</string>
+    <string name="dialogMessage">Created by Damnourous.</string>
+</resources>

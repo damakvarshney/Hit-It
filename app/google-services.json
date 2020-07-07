@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "896448011915",
+    "firebase_url": "https://hit-it-3322a.firebaseio.com",
+    "project_id": "hit-it-3322a",
+    "storage_bucket": "hit-it-3322a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896448011915:android:0815e95b8027503d143e8e",
+        "android_client_info": {
+          "package_name": "com.game.hit_it"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896448011915-f7lquihvq3pkt0a458btf2ai2cj2pvhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYAclT9aXqo3P0YKb2Hyow8Bm-C2JlKHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896448011915-f7lquihvq3pkt0a458btf2ai2cj2pvhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

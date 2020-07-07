@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.game.hit_it">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon_display"
+        android:label="@string/app_name"
+        android:name=".AppController"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Newone">
+        <activity android:name=".login" />
+        <activity android:name=".register" />
+        <activity android:name=".ranking_page" />
+        <activity android:name=".top_players" />
+        <activity android:name=".score_page" />
+        <activity android:name=".play_page"
+            android:label="@string/app_name">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

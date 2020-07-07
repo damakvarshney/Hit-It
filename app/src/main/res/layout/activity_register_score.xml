@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="3"
+    android:background="@color/main_color"
+    android:orientation="vertical"
+    tools:context=".ranking_page">
+
+    <ListView
+        android:id="@+id/ranking_list"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        tools:listitem="@layout/custom_list"
+        android:layout_height="0dp"
+        android:layout_weight="1.845" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/round_box_layout"
+        android:layout_weight="1.155">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            tools:ignore="NestedWeights">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/play_nagain"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:id="@+id/play_again_image"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="0.5"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_baseline_navigate_next_24" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/log_out"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="0.5"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_baseline_backspace_24" />
+
+            <ImageView
+                android:id="@+id/about_app"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="0.5"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_baseline_perm_device_information_24" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
