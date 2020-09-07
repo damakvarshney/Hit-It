@@ -106,6 +106,7 @@ class play_page : AppCompatActivity() {
 
     private fun resetgame() {
         gameStarted = false
+
         score = 0
         val initialTimeLeft = initialCountdown / 1000
         time_left_txtview.text = getString(R.string.time_left, initialTimeLeft)

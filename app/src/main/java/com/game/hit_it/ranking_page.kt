@@ -3,9 +3,9 @@ package com.game.hit_it
 import MyListAdapter
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -20,43 +20,48 @@ class ranking_page : AppCompatActivity() {
 
     internal lateinit var next_page: ImageView
     internal lateinit var ranking_list: ListView
-    internal lateinit var title_name: Array<String>
-    internal lateinit var score_description: Array<Int>
-    internal lateinit var user_imgid: Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_score)
+        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
-        val ref = FirebaseDatabase.getInstance().getReference("/users/")
+            override fun onCancelled(p0: DatabaseError) {
 
-        ref
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    Log.e("data", dataSnapshot.toString())
-                    val list_X = mutableListOf<Ranking_User>()
-                    for (ds in dataSnapshot.children) {
-                        val p: Ranking_User? = dataSnapshot.getValue(Ranking_User::class.java)
-                        p?.let {
-                            list_X.add(it)
-                            title_name = arrayOf(it.username)
-                            Log.e("TAG", "onDataChange: $title_name")
-                            score_description = arrayOf(it.score)
-                            Log.e("TAG", "onDataChange: $score_description")
-                            user_imgid = arrayOf(it.profileImageUrl)
-                            Log.e("TAG", "onDataChange: $user_imgid")
-                        }
-                    }
-                    Log.e("List", "DATA: $list_X ")
-                    val acceessAdapter =
-                        MyListAdapter(this@ranking_page, title_name, score_description, user_imgid)
-                    ranking_list.setAdapter(acceessAdapter)
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                val listView: ListView = findViewById(R.id.ranking_list)
+                val code_list = mutableListOf<Ranking_User>()
+                for (postSnapshot in dataSnapshot.children) {
+
+                    code_list.add(
+                        Ranking_User(
+                            postSnapshot.child("profileImageUrl").getValue().toString(),
+                            postSnapshot.child("username").getValue().toString()
+                            , postSnapshot.child("score").getValue().toString()
+                        )
+                    )
+
                 }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    Log.e("data", databaseError.toString())
-                }
-            })
+
+                listView.adapter = MyListAdapter(
+                    this@ranking_page,
+                    R.layout.custom_list,
+                    code_list
+
+                )
+            }
+
+
+
+        })
+
+
+
 
 
         next_page = findViewById(R.id.play_again_image)

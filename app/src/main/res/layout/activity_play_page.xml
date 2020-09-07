@@ -8,10 +8,11 @@
     android:orientation="vertical"
     tools:context=".play_page">
 
+
     <FrameLayout
         android:id="@+id/play_page_framelayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="2.75"
         android:background="@color/main_color"
         android:orientation="vertical">
@@ -20,7 +21,7 @@
             android:id="@+id/timer_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="120dp"
             android:gravity="center"
             android:text="@string/time_left"
             android:textColor="@color/white"
@@ -32,14 +33,14 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="180dp"
             android:background="@drawable/button_cir"
             android:gravity="center_vertical" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="420dp"
+            android:layout_marginTop="400dp"
             android:gravity="center_horizontal"
             android:text="@string/hit_it_on"
             android:textColor="@color/white"
@@ -51,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="600dp"
+            android:layout_marginTop="580dp"
             android:gravity="center_horizontal"
             android:text="@string/good_luck"
             android:textColor="@color/white"
@@ -63,20 +64,20 @@
             android:id="@+id/your_score_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="540dp"
+            android:layout_marginTop="520dp"
             android:gravity="center"
             android:text="@string/your_score"
-            android:visibility="visible"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/after_start_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="600dp"
+            android:layout_marginTop="580dp"
             android:gravity="center_horizontal"
             android:text="@string/you_can_do_it"
             android:textColor="@color/white"
@@ -86,11 +87,10 @@
 
     </FrameLayout>
 
-
     <LinearLayout
         android:id="@+id/Score_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="330dp"
         android:layout_weight="1.25"
         android:orientation="vertical"
         android:visibility="gone"
@@ -111,8 +111,8 @@
             android:gravity="center_horizontal"
             android:text="@string/your_score_ahead"
             android:textColor="#00A6B8"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textSize="15sp"
+            android:textStyle="italic" />
 
 
     </LinearLayout>

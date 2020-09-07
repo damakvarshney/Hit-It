@@ -1,5 +1,6 @@
-import android.app.Activity
+import android.content.Context
 import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -11,27 +12,24 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.game.hit_it.R
+import com.game.hit_it.Ranking_User
 
-class MyListAdapter(
-    private var context: Activity,
-    private var title: Array<String>,
-    private var description: Array<Int>,
-    private var imgid: Array<String>
-) : ArrayAdapter<String>(context, R.layout.custom_list, title) {
+class MyListAdapter (var mCtx: Context, var resource:Int, var item:List<Ranking_User>)
+    : ArrayAdapter<Ranking_User>( mCtx , resource , item) {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val layoutInflater: LayoutInflater = LayoutInflater.from(mCtx)
 
-    override fun getView(position: Int, view: View?, parent: ViewGroup): View {
-        var inflater = context.layoutInflater
-        var rowView = inflater.inflate(R.layout.custom_list, null, true)
+        val view: View = layoutInflater.inflate(resource,null)
+        var user_image: ImageView = view.findViewById(R.id.user_image)
+        var user_name : TextView = view.findViewById(R.id.user_name)
+        var score : TextView = view.findViewById(R.id.scores)
 
-        var titleText = rowView.findViewById(R.id.title) as TextView
-        var imageView = rowView.findViewById(R.id.icon) as ImageView
-        var subtitleText = rowView.findViewById(R.id.description) as TextView
-
-        titleText.text = title[position]
-        subtitleText.text = description[position].toString()
+        var Ranking_User: Ranking_User = item[position]
+        user_name.text = Ranking_User.username
+        score.text = Ranking_User.score.toString()
         Glide.with(context)
-            .load(imgid)
-            .placeholder(R.drawable.glide_default)
+            .load(user_image)
+            .placeholder(R.drawable.icon_display)
             .listener(object : RequestListener<Drawable?> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -39,7 +37,7 @@ class MyListAdapter(
                     target: Target<Drawable?>,
                     isFirstResource: Boolean
                 ): Boolean {
-                    imageView.setImageResource(R.drawable.glide_default)
+                    user_image.setImageResource(R.drawable.icon_display)
                     return false
                 }
 
@@ -53,8 +51,8 @@ class MyListAdapter(
                     return false
                 }
             })
-            .into(imageView)
+            .into(user_image)
 
-        return rowView
+        return view
     }
 }

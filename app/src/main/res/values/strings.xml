@@ -5,13 +5,13 @@
     <string name="time_left">Time Left : %1$d"sec"</string>
     <string name="your_score">Your Score : %1$d</string>
     <string name="hit_it_on">Hit It On</string>
-    <string name="your_score_ahead">Your Score ></string>
+    <string name="your_score_ahead">Click on Score</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="select_photo">Select Photo</string>
     <string name="password">Password</string>
     <string name="email_address">Email Address</string>
     <string name="good_luck">|| Good Luck ||</string>
-    <string name="you_can_do_it">|| You Can Do It ||</string>
+    <string name="you_can_do_it">|| Keep Tapping ||</string>
     <string name="score_display">%1$d</string>
     <string name="your_scores">Your Score</string>
     <string name="play_nagain">Play\nAgain</string>
@@ -23,4 +23,6 @@
     <string name="about">About</string>
     <string name="dialogTitle">About Application</string>
     <string name="dialogMessage">Created by Damnourous.</string>
+    <string name="log_in">Log In</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account ? Register</string>
 </resources>
