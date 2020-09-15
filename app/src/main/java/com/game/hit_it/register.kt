@@ -2,6 +2,7 @@ package com.game.hit_it
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
@@ -26,19 +28,28 @@ class register : AppCompatActivity() {
     internal lateinit var register_btn:Button
     var selectedPhotoUri: Uri? = null
     internal var count:Int =0
+    lateinit var sharedPreferences: SharedPreferences;
+    lateinit var editor: SharedPreferences.Editor;
+    lateinit var progressDialog: SpotsDialog;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        sharedPreferences = this.getSharedPreferences(
+            "HITIT_DATA",
+            MODE_PRIVATE
+        )
+        editor = sharedPreferences.edit()
+        progressDialog = SpotsDialog(this, R.style.custom_progressDialog)
         register_btn= findViewById(R.id.register_btn)
         register_btn.setOnClickListener {
             if (count==0){
-                Toast.makeText(this,"Select Username/Email Address/Photo",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Please Select Photo",Toast.LENGTH_LONG).show()
 
             }else if (count==1){
                 performRegister()
-                Toast.makeText(this,"Loading....",Toast.LENGTH_LONG).show()
+                onPreExecute()
 
             }
         }
@@ -99,18 +110,18 @@ class register : AppCompatActivity() {
             profileImageUrl
 
         )
-
+        editor.putString("USER_ID", uid)
+        editor.putString("USERNAME",username_register.text.toString())
+        editor.putString("IMAGE",profileImageUrl)
+        editor.commit()
         ref.setValue(user)
             .addOnSuccessListener {
+                onPostExecute()
                 Log.e("Database_created", "Finally we saved the user to Firebase Database")
 
                 Toast.makeText(this, "SuccessFully Created", Toast.LENGTH_SHORT)
                     .show()
-//                val dialog = ProgressDialog(this)
-//                dialog.setCancelable(false)
-//                dialog.setMessage("Please Wait")
-//                dialog.show()
-//                dialog.dismiss()
+
                 val intent = Intent(this, login::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
@@ -118,6 +129,7 @@ class register : AppCompatActivity() {
 
             }
             .addOnFailureListener {
+                onPostExecute()
                 Log.e("Failed_Database", "Failed to set value to database: ${it.message}")
 
             }
@@ -151,7 +163,7 @@ class register : AppCompatActivity() {
 
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please enter text in email/pw", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please enter text in email/password", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -170,9 +182,10 @@ class register : AppCompatActivity() {
                 if (selectedPhotoUri != null){
                     register_btn.setOnClickListener {
                         if (selectedPhotoUri==null){
-                            Toast.makeText(this,"Select Username/Email Address/Photo",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this,"Please Select Photo",Toast.LENGTH_LONG).show()
                         }else
                             performRegister()
+
                     }
                     uploadImageToFirebaseStorage()
                 }
@@ -184,10 +197,21 @@ class register : AppCompatActivity() {
 
 
             .addOnFailureListener {
+                onPostExecute()
                 Log.e("Failed", "Failed to create user: ${it.message}")
+
                 Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT)
                     .show()
             }
 
+    }
+    //Am using it in an AsyncTask. So in  my onPreExecute, I do this:
+    fun onPreExecute() {
+        progressDialog.show()
+    }
+
+    //dismiss in onPostExecute
+    fun onPostExecute() {
+        progressDialog.dismiss()
     }
 }

@@ -24,4 +24,13 @@
         <item name="actionMenuTextColor">#000</item>
     </style>
 
+    <style name="custom_progressDialog" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">Please Wait</item>
+        <item name="android:textColor">#00A6B8</item>
+        <item name="DialogSpotColor">#00A6B8</item>
+        <item name="DialogSpotCount">8</item>
+        <item name="android:background">@drawable/round_bg</item>
+    </style>
+
 </resources>

@@ -2,6 +2,7 @@ package com.game.hit_it
 
 import MyListAdapter
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.ListView
@@ -20,11 +21,21 @@ class ranking_page : AppCompatActivity() {
 
     internal lateinit var next_page: ImageView
     internal lateinit var ranking_list: ListView
+    lateinit var sharedPreferences: SharedPreferences;
+    lateinit var editor: SharedPreferences.Editor;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_score)
+        sharedPreferences = this.getSharedPreferences(
+            "HITIT_DATA",
+            MODE_PRIVATE
+        )
+        editor = sharedPreferences.edit()
+
+
         val ref = FirebaseDatabase.getInstance().getReference("/users")
+
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onCancelled(p0: DatabaseError) {
@@ -73,6 +84,8 @@ class ranking_page : AppCompatActivity() {
             finish()
         }
         log_out.setOnClickListener {
+            editor.putBoolean("LOGIN_STATUS",false)
+            editor.commit()
             val intent = Intent(this, login::class.java)
             startActivity(intent)
             finish()

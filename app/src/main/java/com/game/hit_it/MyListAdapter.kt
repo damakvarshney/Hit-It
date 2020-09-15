@@ -26,7 +26,7 @@ class MyListAdapter (var mCtx: Context, var resource:Int, var item:List<Ranking_
 
         var Ranking_User: Ranking_User = item[position]
         user_name.text = Ranking_User.username
-        score.text = Ranking_User.score.toString()
+        score.text = Ranking_User.score
         Glide.with(context)
             .load(user_image)
             .placeholder(R.drawable.icon_display)
